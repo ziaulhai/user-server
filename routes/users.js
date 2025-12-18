@@ -195,9 +195,9 @@ module.exports = function (userCollection) {
     });
 
 
-    // ------------------------------------------------------------------
+   
     // ৬. PATCH রুট: ইউজার প্রোফাইল আপডেট করা (Private)
-    // ------------------------------------------------------------------
+    
     router.patch('/:email', verifyJWT, async (req, res) => {
         const email = req.params.email;
         const updatedData = req.body;
