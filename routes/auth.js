@@ -3,7 +3,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 
-// 🔴 Note: এই ফাংশনটি users কালেকশন (collection) গ্রহণ করে
+//এই ফাংশনটি users কালেকশন (collection) গ্রহণ করে
 module.exports = function(userCollection) {
     const router = express.Router();
     
@@ -53,13 +53,13 @@ module.exports = function(userCollection) {
     router.post('/register', async (req, res) => { 
         const user = req.body;
         
-        // 🔥🔥🔥 ফিক্স: ১. ফোন নম্বর অবশ্যই পূরণীয় (Required) যাচাই 🔥🔥🔥
+        // ফিক্স: ১. ফোন নম্বর অবশ্যই পূরণীয় (Required) যাচাই 
         if (!user.phoneNumber || user.phoneNumber.trim() === '') {
             // যদি ফোন নম্বর না থাকে বা খালি স্ট্রিং হয়
             console.log("❌ Registration blocked: Missing phone number.");
             return res.status(400).send({ message: "ফোন নম্বর অবশ্যই পূরণীয়।" });
         }
-        // 🔥🔥🔥 ফিক্স শেষ 🔥🔥🔥
+       
 
         const query = { email: user.email };
         
