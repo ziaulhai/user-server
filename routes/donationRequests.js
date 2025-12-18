@@ -310,7 +310,7 @@ module.exports = function(donationRequestsCollection, userCollection){
 
             // ৩. যদি কোনো ডেটা আপডেট করার না থাকে
             if (Object.keys(updateOperation).length === 0) {
-                // 🔥 নতুন লগ ৫: কোনো বৈধ ডেটা নেই
+                //  নতুন লগ ৫: কোনো বৈধ ডেটা নেই
                 console.log("!!! FAILED VALIDATION: No valid data or status update provided.");
                 return res.status(400).send({ message: "No valid data or status update provided." });
             }
@@ -320,7 +320,7 @@ module.exports = function(donationRequestsCollection, userCollection){
                 { $set: updateOperation }
             );
             
-            // 🔥 নতুন লগ ৬: আপডেট সফল
+            //  নতুন লগ ৬: আপডেট সফল
             console.log("Update Successful. Modified Count:", result.modifiedCount);
 
             res.send({ 
@@ -351,7 +351,7 @@ module.exports = function(donationRequestsCollection, userCollection){
                 return res.status(404).send({ message: "Donation request not found." });
             }
             
-            // 🌟 নিরাপত্তা চেক: ব্যবহারকারী কি রিকোয়েস্টার, অ্যাসাইনড ডোনার, নাকি অ্যাডমিন?
+            //  নিরাপত্তা চেক: ব্যবহারকারী কি রিকোয়েস্টার, অ্যাসাইনড ডোনার, নাকি অ্যাডমিন?
             const isRequester = request.requesterEmail === userEmail;
             const isAssignedDonor = request.donorEmail === userEmail && request.requestStatus === STATUS_IN_PROGRESS;
             
