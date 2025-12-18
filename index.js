@@ -22,6 +22,7 @@ const client = new MongoClient(process.env.MONGODB_URI, {
     serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true }
 });
 
+
 // JWT Verification Middleware
 const verifyJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
