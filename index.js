@@ -10,7 +10,9 @@ const port = process.env.PORT || 5000;
 // ১. মিডলওয়্যার কনফিগারেশন
 app.use(cors({
     origin: ['http://localhost:5173', 
-        'https://blood-donation-gray-kappa.vercel.app'],
+        'https://blood-donation-gray-kappa.vercel.app',
+    'https://manageblooddonation.netlify.app'
+    ],
     credentials: true
 }));
 app.use(express.json());
@@ -50,6 +52,21 @@ async function run() {
         const paymentRoutes = require('./routes/payment');
 
         const apiV1Router = express.Router();
+
+      // 🔥 ইমেইল চেক করার রুট (রেজিস্ট্রেশনের সময় তৎক্ষণাৎ চেক করার জন্য)
+        apiV1Router.get('/users/check-email/:email', async (req, res) => {
+            try {
+                const email = req.params.email.toLowerCase();
+                const user = await userCollection.findOne({ email: email });
+                if (user) {
+                    return res.send({ exists: true });
+                }
+                res.send({ exists: false });
+            } catch (error) {
+                res.status(500).send({ message: "Internal Server Error" });
+            }
+        });
+
 
         // ৩. রাউট মাউন্টিং
         apiV1Router.use('/auth', authRoutes(userCollection));
