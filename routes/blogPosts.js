@@ -1,4 +1,4 @@
-// user-server/routes/blogPosts.js - চূড়ান্ত সংস্করণ
+// user-server/routes/blogPosts.js -
 // এই ফাইলটি চারটি প্রধান রুট হ্যান্ডেল করে: নতুন পোস্ট তৈরি, সমস্ত পোস্ট দেখা, নির্দিষ্ট একটি পোস্ট দেখা, আপডেট করা এবং ডিলিট করা।
 
 const express = require('express');
@@ -12,7 +12,7 @@ module.exports = function (blogCollection) {
     // ------------------------------------------------------------------
     // ১. POST রুট: নতুন ব্লগ পোস্ট তৈরি করা (Private - Auth/JWT Protected)
     // ক্লায়েন্ট রিকোয়েস্ট: POST /api/v1/content/blog-posts
-   // ১. POST রুট: নতুন ব্লগ পোস্ট তৈরি করা (Private - Auth/JWT Protected)
+ 
     router.post('/', verifyJWT, async (req, res) => {
         const postData = req.body;
         const authorEmail = req.decoded.email; // JWT থেকে ইমেইল নেওয়া
