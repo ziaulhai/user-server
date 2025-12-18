@@ -1,4 +1,4 @@
-// user-server/routes/users.js (সম্পূর্ণ কোড)
+// user-server/routes/users.js (সংশোধিত কোড)
 
 const express = require('express');
 const verifyJWT = require('../middlewares/verifyJWT');
@@ -27,8 +27,10 @@ module.exports = function (userCollection) {
     // ------------------------------------------------------------------
     router.get('/donors-search', async (req, res) => {
         const { district, upazila, bloodGroup } = req.query;
-        // শুধুমাত্র 'donor' রোলের এবং 'active' স্ট্যাটাসের ইউজারদের সার্চ করা হবে
-        const query = { role: 'donor', status: 'active' }; 
+        
+        // সংশোধিত লজিক: 'role' ফিল্টার সরিয়ে দেওয়া হয়েছে যাতে অ্যাডমিন, ভলান্টিয়ার সবাই শো করে।
+        // শুধুমাত্র 'active' স্ট্যাটাসের ইউজারদের সার্চ করা হবে।
+        const query = { status: 'active' }; 
 
         //  সংশোধিত লজিক: নিশ্চিত করা হচ্ছে যে ভ্যালু উপস্থিত এবং খালি স্ট্রিং না
         
