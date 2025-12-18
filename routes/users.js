@@ -157,9 +157,6 @@ module.exports = function (userCollection) {
     });
 
 
-    // ==================================================================
-    // 🔥 জেনেরিক প্যারামিটার রুটগুলো (/:email) - একদম শেষে রাখা হলো 🔥
-    // ==================================================================
 
     // ------------------------------------------------------------------
     // ৫. GET রুট: ইমেইল দ্বারা একক ইউজার প্রোফাইল লোড করা 
@@ -213,12 +210,10 @@ module.exports = function (userCollection) {
             return res.status(403).send({ message: "Forbidden: Cannot update another user's profile." });
         }
         
-        // 🔥🔥🔥 ফিক্স: ১. ফোন নম্বর অবশ্যই পূরণীয় (Required) যাচাই 🔥🔥🔥
         // phoneNumber না থাকলে বা খালি স্ট্রিং হলে 400 ত্রুটি দিবে
         if (!updatedData.phoneNumber || updatedData.phoneNumber.trim() === '') {
             return res.status(400).send({ message: "ফোন নম্বর আপডেট করার জন্য অবশ্যই প্রয়োজন।" });
         }
-        // 🔥🔥🔥 ফিক্স শেষ 🔥🔥🔥
 
 
         const updatableData = {};
@@ -232,10 +227,9 @@ module.exports = function (userCollection) {
         if (updatedData.lastDonationDate) updatableData.lastDonationDate = updatedData.lastDonationDate; 
         if (updatedData.photoURL) updatableData.photoURL = updatedData.photoURL.trim();
         
-        // 🔥🔥🔥 ফিক্স: ২. ফোন নম্বর ডেটাবেসে যুক্ত করা হলো 🔥🔥🔥
+     
         updatableData.phoneNumber = updatedData.phoneNumber.trim(); 
-        // 🔥🔥🔥 ফিক্স শেষ 🔥🔥🔥
-
+       
 
         if (Object.keys(updatableData).length === 0) {
             return res.send({ acknowledged: true, modifiedCount: 0, message: "No updatable data provided." });
