@@ -30,5 +30,6 @@ const FundSchema = new mongoose.Schema({
 });
 
 // কালেকশনের নাম 'funds' হবে, কারণ আপনি সেটিই উল্লেখ করেছেন
+
 const Fund = mongoose.model('Fund', FundSchema); 
 module.exports = Fund;
